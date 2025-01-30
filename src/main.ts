@@ -2,6 +2,9 @@ import axios from "axios";
 import puppeteer from "puppeteer";
 import fs from "fs";
 import path from "path";
+import { openCsv } from "./csv"
+
+const productData: any[] = [];
 
 async function scrape() {
   const browser = await puppeteer.launch({ headless: true });
@@ -16,7 +19,6 @@ async function scrape() {
   });
 
   let currentPage = 1;
-  let productData: any[] = [];
 
   while (true) {
     const url = `https://www.atacadobrandcollection.com/masculino?pagina=${currentPage}`;
@@ -74,17 +76,17 @@ async function scrape() {
           const outputPath = path.join(productFolder, imageName);
         
           await downloadImage(imageUrl, outputPath);
-        }
-
+        }       
       } catch (error) {
         console.log(error)
       }
     }      
 
-    currentPage++;
+    currentPage++;  
   }
 
   await browser.close();
+  openCsv(productData);
 }
 
 async function downloadImage(imageUrl: string, outputPath: string) {
