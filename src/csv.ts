@@ -26,25 +26,25 @@ export async function openCsv(productInfo: any) {
                         item.title.toLowerCase().replace(/\s+/g, "-"), // Handle (slug)
                         sanitizeString(item.title), // Title
                         sanitizeString(item.description), // Body (HTML)
-                        "Meu Vendor", // Vendor
-                        "Categoria X", // Product Category
-                        "Tipo Y", // Type
-                        "Tag1,Tag2", // Tags
+                        "Brand Collection", // Vendor
+                        "Saúde e Beleza > Cuidados Pessoais > Cosméticos", // Product Category
+                        "Perfume", // Type
+                        "Perfume,Brand Collection", // Tags
                         "TRUE", // Published
-                        "Tamanho", // Option1 Name
-                        "M", // Option1 Value
+                        "", // Option1 Name
+                        "", // Option1 Value
                         "", // Option2 Name
                         "", // Option2 Value
                         "", // Option3 Name
                         "", // Option3 Value
-                        "SKU123", // Variant SKU
-                        "500", // Variant Grams
-                        "", // Variant Inventory Tracker
-                        "10", // Variant Inventory Qty
+                        "", // Variant SKU
+                        "50", // Variant Grams
+                        "shopify", // Variant Inventory Tracker
+                        "100", // Variant Inventory Qty
                         "continue", // Variant Inventory Policy
                         "manual", // Variant Fulfillment Service
-                        `R$ ${item.price}`, // Variant Price
-                        "", // Variant Compare At Price
+                        "89.90", // Variant Price
+                        "99.90", // Variant Compare At Price
                         "TRUE", // Variant Requires Shipping
                         "TRUE", // Variant Taxable
                         "", // Variant Barcode

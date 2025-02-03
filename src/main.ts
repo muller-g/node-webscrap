@@ -21,7 +21,7 @@ async function scrape() {
   let currentPage = 1;
 
   while (true) {
-    const url = `https://www.atacadobrandcollection.com/masculino?pagina=${currentPage}`;
+    const url = `https://www.perfumebrandcollection.com.br/brand-collection?pagina=${currentPage}`;
 
     await page.goto(url, { waitUntil: "domcontentloaded" });
 
@@ -52,7 +52,7 @@ async function scrape() {
 
         const productInfo = await page.evaluate(() => {
           const title = document.querySelector<any>("#corpo > div.secao-principal.row-fluid.sem-coluna > div > div.produto-detalhes > div > div > div.produto-detalhes-detalhes > div > div.info-principal-produto > h1")?.innerText.trim() || "Sem título";
-          const price = document.querySelector<any>("#corpo > div.secao-principal.row-fluid.sem-coluna > div > div.produto-detalhes > div > div > div.produto-detalhes-detalhes > div > div > div.precos-wrap > div > div:nth-child(1) > strong")?.innerText.trim() || "Sem preço";
+          const price = document.querySelector<any>("#corpo > div.secao-principal.row-fluid.sem-coluna > div > div.produto-detalhes > div > div > div.produto-detalhes-detalhes > div > div > div > div > div > strong")?.innerText.trim() || "Sem preço";
           const description = document.querySelector<any>("#descricao")?.innerText.trim() || "Sem descrição";
       
           return { title, price, description };
@@ -63,7 +63,7 @@ async function scrape() {
         const imageUrl = await page.evaluate((selector) => {
           const imgElement: any = document.querySelector(selector);
           return imgElement ? imgElement.src : null;
-        }, '#imagemProduto');
+        }, '#splide01-slide01 > a > img:nth-child(1)');
         
         if (imageUrl) {
           const imageName = path.basename(new URL(imageUrl).pathname);
@@ -79,6 +79,7 @@ async function scrape() {
         }       
       } catch (error) {
         console.log(error)
+        continue;
       }
     }      
 
